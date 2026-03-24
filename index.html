@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>After the Gathering Drop — Sassy Roots</title>
+<meta name="description" content="Fire & Frost Muscle Balm — made fresh, limited stock, offered at a discount until it's gone.">
+<meta property="og:title" content="After the Gathering Drop — Sassy Roots">
+<meta property="og:description" content="Fire & Frost Muscle Balm. Made fresh. Limited stock. $12 + $5 shipping.">
+<meta property="og:image" content="https://sassyroots.com/assets/og-drop.jpg">
+<meta name="theme-color" content="#1A3040">
+<script async src="https://js.stripe.com/v3/buy-button.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --forest:     #3B4A2F;
+    --moss:       #5C6B45;
+    --sage:       #8A9B6E;
+    --sage-light: #C4CEAC;
+    --sage-pale:  #EEF1E6;
+    --bark:       #4A3F32;
+    --earth:      #7A5C3A;
+    --clay:       #A67C52;
+    --sand:       #D4B896;
+    --mustard:    #D4A017;
+    --mustard-lt: #ECC84A;
+    --mustard-pale: #FBF3D0;
+    --navy:       #1A3040;
+    --navy-mid:   #1E3A4A;
+    --navy-lt:    #2C5068;
+    --charcoal:   #2A2A25;
+    --linen:      #F5EFE3;
+    --cream:      #FAF7F0;
+    --white:      #FDFCF8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    background: var(--cream);
+    color: var(--bark);
+    line-height: 1.65;
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+
+  /* ── ANNOUNCE BAR ── */
+  .announce-bar {
+    background: var(--charcoal);
+    color: var(--linen);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .announce-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--mustard);
+    flex-shrink: 0;
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  .announce-bar a {
+    color: var(--mustard-lt);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--sage-light);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--forest);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-back {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--clay);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+    transition: color 0.15s;
+  }
+  .nav-back:hover { color: var(--earth); }
+  .nav-back::before { content: '←'; font-size: 14px; }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      to bottom,
+      #FAF7F0 0%,
+      #EEF1E6 15%,
+      #c8d4b8 28%,
+      #3B4A2F 40%,
+      #263640 52%,
+      #1E3A4A 65%,
+      #1A3040 100%
+    );
+    min-height: unset;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Radial atmosphere */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 35% at 50% 100%, rgba(212,160,23,0.2) 0%, transparent 65%),
+      radial-gradient(ellipse 60% 30% at 15% 10%, rgba(138,155,110,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 25% at 85% 20%, rgba(196,206,172,0.07) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Grain */
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Decorative lines */
+  .hero-line-1 {
+    position: absolute;
+    width: 1px;
+    height: 55%;
+    background: linear-gradient(to bottom, transparent, rgba(212,160,23,0.3), transparent);
+    right: 18%;
+    top: 10%;
+    transform: rotate(8deg);
+    z-index: 2;
+  }
+  .hero-line-2 {
+    position: absolute;
+    width: 1px;
+    height: 40%;
+    background: linear-gradient(to bottom, transparent, rgba(138,155,110,0.2), transparent);
+    right: 20%;
+    top: 15%;
+    transform: rotate(8deg);
+    z-index: 2;
+  }
+  .hero-ring {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,206,172,0.06);
+    top: -120px; left: -100px;
+    z-index: 2;
+  }
+  .hero-ring-2 {
+    position: absolute;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,160,23,0.06);
+    top: -40px; left: -20px;
+    z-index: 2;
+  }
+
+  /* Horizontal ground line */
+  .hero-ground {
+    position: absolute;
+    left: 0; right: 0;
+    top: 50%;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(212,160,23,0.3) 20%,
+      rgba(212,160,23,0.5) 50%,
+      rgba(212,160,23,0.3) 80%,
+      transparent 100%
+    );
+    z-index: 2;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 760px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 32px;
+  }
+
+  /* Upper light zone */
+  .hero-upper {
+    padding-top: clamp(32px, 5vw, 56px);
+    padding-bottom: 16px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--moss);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: rise 0.6s 0.1s ease forwards;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--sage);
+    opacity: 0.6;
+  }
+
+  .hero-headline-light {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 62px);
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1.05;
+    opacity: 0;
+    animation: rise 0.6s 0.2s ease forwards;
+  }
+  .hero-headline-light em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--moss);
+    display: block;
+    font-size: clamp(28px, 5.5vw, 50px);
+  }
+
+  /* Center spacer */
+  .hero-center { padding: 20px 0; }
+
+  /* Lower dark zone */
+  .hero-lower {
+    padding-bottom: clamp(16px, 3vw, 28px);
+  }
+
+  .hero-lower-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mustard);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: rise 0.6s 0.45s ease forwards;
+  }
+  .hero-lower-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--mustard);
+    opacity: 0.5;
+  }
+
+  .hero-headline-dark {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 6vw, 54px);
+    font-weight: 700;
+    color: var(--linen);
+    line-height: 1.05;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: rise 0.6s 0.5s ease forwards;
+  }
+  .hero-headline-dark span {
+    color: var(--mustard-lt);
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    color: var(--sage-light);
+    line-height: 1.7;
+    max-width: 480px;
+    font-weight: 300;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: rise 0.6s 0.6s ease forwards;
+  }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── PRODUCT SECTION ── */
+  .product-section {
+    background: var(--white);
+    padding: clamp(48px, 8vw, 80px) 32px;
+  }
+
+  .product-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .product-card {
+    background: var(--cream);
+    border: 1px solid var(--sage-light);
+    border-radius: 16px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+  }
+
+  .product-visual {
+    background: linear-gradient(160deg, var(--navy-mid) 0%, var(--forest) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    gap: 14px;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 85%, rgba(212,160,23,0.1) 0%, transparent 65%);
+  }
+  .product-visual-icon {
+    font-size: 56px;
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 6px 16px rgba(0,0,0,0.35));
+  }
+  .product-visual-badge {
+    background: var(--mustard);
+    color: var(--navy);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    position: relative;
+    z-index: 1;
+  }
+  .product-visual-size {
+    font-size: 11px;
+    color: var(--sage-light);
+    letter-spacing: 0.06em;
+    position: relative;
+    z-index: 1;
+  }
+
+  .product-details {
+    padding: 32px 32px 28px;
+  }
+
+  .product-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .product-tagline {
+    font-size: 13px;
+    color: var(--sage);
+    font-style: italic;
+    margin-bottom: 16px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .product-desc {
+    font-size: 14px;
+    color: var(--bark);
+    line-height: 1.75;
+    margin-bottom: 24px;
+    font-weight: 300;
+  }
+
+  /* Ingredient tags */
+  .ingredient-row {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .ingredient-tag {
+    background: var(--sage-pale);
+    color: var(--forest);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.03em;
+  }
+
+  /* Pricing */
+  .pricing-row {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .price-now {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .price-was {
+    font-size: 18px;
+    color: var(--slate, #8B8578);
+    text-decoration: line-through;
+    opacity: 0.55;
+  }
+  .price-save {
+    background: var(--mustard-pale);
+    color: #8A6408;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+  }
+
+  .shipping-note {
+    font-size: 12px;
+    color: var(--clay);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shipping-note::before {
+    content: '📦';
+    font-size: 13px;
+  }
+
+  /* Stock */
+  .stock-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.25);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #8A6408;
+    letter-spacing: 0.04em;
+    margin-bottom: 24px;
+  }
+  .stock-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--mustard);
+    animation: pulse 1.6s infinite;
+  }
+
+  /* CTA */
+  .btn-buy {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background: var(--forest);
+    color: var(--linen);
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    margin-bottom: 10px;
+  }
+  .btn-buy:hover { background: var(--moss); }
+  .btn-buy:active { transform: scale(0.99); }
+
+  .btn-note {
+    font-size: 11px;
+    color: var(--clay);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ── WHY THIS DROP ── */
+  .why-section {
+    background: var(--cream);
+    padding: clamp(48px, 7vw, 72px) 32px;
+    border-top: 1px solid var(--sage-light);
+  }
+  .why-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .why-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .why-eyebrow::before {
+    content: '';
+    width: 20px; height: 1px;
+    background: var(--sage);
+    opacity: 0.5;
+  }
+  .why-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--forest);
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .why-body {
+    font-size: 14px;
+    color: var(--bark);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .why-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .fact-item {
+    background: var(--white);
+    border: 1px solid var(--sage-light);
+    border-radius: 10px;
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .fact-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .fact-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--forest);
+    margin-bottom: 3px;
+  }
+  .fact-desc {
+    font-size: 12px;
+    color: var(--clay);
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--forest);
+    padding: clamp(40px, 6vw, 64px) 32px;
+  }
+  .footer-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--linen);
+    letter-spacing: 0.03em;
+  }
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--sage-light);
+    line-height: 1.7;
+    max-width: 360px;
+    font-weight: 300;
+  }
+  .footer-link {
+    display: inline-block;
+    padding: 11px 28px;
+    border: 1.5px solid rgba(196,206,172,0.35);
+    border-radius: 6px;
+    color: var(--sage-light);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .footer-link:hover {
+    border-color: var(--sage-light);
+    color: var(--linen);
+    background: rgba(255,255,255,0.05);
+  }
+  .footer-legal {
+    font-size: 11px;
+    color: var(--sage);
+    opacity: 0.5;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+  .footer-divider {
+    width: 48px; height: 1px;
+    background: rgba(196,206,172,0.2);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .nav { padding: 12px 20px; }
+    .hero-content { padding: 0 20px; }
+    .product-section { padding: 40px 20px; }
+    .product-card { grid-template-columns: 1fr; }
+    .product-visual { padding: 28px 20px; flex-direction: row; justify-content: flex-start; gap: 16px; }
+    .product-visual-icon { font-size: 44px; }
+    .product-details { padding: 24px 20px; }
+    .why-section { padding: 40px 20px; }
+    .why-wrap { grid-template-columns: 1fr; gap: 32px; }
+    .footer { padding: 40px 20px; }
+    .announce-bar { font-size: 11px; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── ANNOUNCE BAR ── -->
+<div class="announce-bar">
+  <div class="announce-dot"></div>
+  <span>After the Gathering Drop — limited stock, while it lasts.</span>
+  <a href="https://sassyroots.com" target="_blank" rel="noopener">Full shop →</a>
+</div>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <a class="nav-logo" href="https://sassyroots.com">Sassy Roots</a>
+  <a class="nav-back" href="https://sassyroots.com">Back to full shop</a>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-line-1"></div>
+  <div class="hero-line-2"></div>
+  <div class="hero-ring"></div>
+  <div class="hero-ring-2"></div>
+  <div class="hero-ground"></div>
+
+  <div class="hero-content">
+
+    <!-- Light zone -->
+    <div class="hero-upper">
+      <div class="hero-eyebrow">After the Gathering</div>
+      <div class="hero-headline-light">
+        Made fresh.<br>
+        <em>Came home with us.</em>
+      </div>
+    </div>
+
+    <div class="hero-center"></div>
+
+    <!-- Dark zone -->
+    <div class="hero-lower">
+      <div class="hero-lower-eyebrow">Limited stock · one price · no waiting</div>
+      <div class="hero-headline-dark">
+        Fire &amp; Frost<br><span>Muscle Balm</span>
+      </div>
+      <p class="hero-desc">
+        We made a fresh batch for the event. It's good — full shelf life, full potency. There's just more than we needed on the day. So we're offering what's left at a discount, until it's gone.
+      </p>
+      <button onclick="openStripe()" class="btn-buy" style="max-width:260px;">Grab yours — $12</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── PRODUCT ── -->
+<section class="product-section" id="product">
+  <div class="product-wrap">
+
+    <div class="product-card">
+
+      <div class="product-visual">
+        <div class="product-visual-icon">🌿</div>
+        <div class="product-visual-badge">Event Fresh</div>
+        <div class="product-visual-size">.15 oz · lip balm size</div>
+      </div>
+
+      <div class="product-details">
+        <div class="product-name">Fire & Frost Muscle Balm</div>
+        <div class="product-tagline">Deep warmth. Cooling finish. Ready to work.</div>
+
+        <p class="product-desc">
+          Arnica, ginger, and essential oils — a combination long worked with for sore, tired muscles. The warmth moves in, the tension eases out. Small enough to keep in your bag, your gym kit, or your nightstand.
+        </p>
+
+        <div class="ingredient-row">
+          <span class="ingredient-tag">Arnica</span>
+          <span class="ingredient-tag">Ginger</span>
+          <span class="ingredient-tag">Essential Oils</span>
+          <span class="ingredient-tag">Small batch</span>
+          <span class="ingredient-tag">Handcrafted</span>
+        </div>
+
+        <div class="pricing-row">
+          <span class="price-now">$12</span>
+          <span class="price-was">$18</span>
+          <span class="price-save">Save 33%</span>
+        </div>
+
+        <div class="shipping-note">Flat $5 shipping · ships within 3 days</div>
+
+        <div class="stock-tag">
+          <div class="stock-dot"></div>
+          Limited stock — no restock planned
+        </div>
+
+        <!-- Stripe popup checkout -->
+        <button onclick="openStripe()" class="btn-buy">
+          Add to Cart — $12
+        </button>
+
+        <div class="btn-note">
+          Secure checkout via Stripe · $5 flat shipping · ships USPS
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── WHY THIS DROP ── -->
+<section class="why-section">
+  <div class="why-wrap">
+
+    <div>
+      <div class="why-eyebrow">What this is</div>
+      <h2 class="why-headline">Made with intention.<br>Offered the same way.</h2>
+      <p class="why-body">
+        Sometimes a batch comes home from an event. It's not surplus in the dismissive sense — it's a remedy that was made carefully, traveled to a gathering, and didn't find all its people that day.<br><br>
+        This is how we move it: with a discount, with honesty about what it is, and with the belief that the right hands are still out there looking for it.
+      </p>
+    </div>
+
+    <div class="why-facts">
+      <div class="fact-item">
+        <span class="fact-icon">🌱</span>
+        <div>
+          <div class="fact-title">Full shelf life</div>
+          <div class="fact-desc">Made fresh for the event. Properly sealed and stored. Nothing about this is compromised.</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <span class="fact-icon">🤲</span>
+        <div>
+          <div class="fact-title">Small batch, handcrafted</div>
+          <div class="fact-desc">Pacific Northwest plants. Made in small batches, the way it's always been done here.</div>
+        </div>
+      </div>
+      <div class="fact-item">
+        <span class="fact-icon">⏳</span>
+        <div>
+          <div class="fact-title">No restock planned</div>
+          <div class="fact-desc">When these are gone, they're gone. The next batch won't be made until it needs to be.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="footer-wrap">
+    <div class="footer-logo">Sassy Roots</div>
+    <p class="footer-tagline">
+      Bold, lively herbalism — rooted in tradition, made for everyday life. Explore the full apothecary at sassyroots.com.
+    </p>
+    <a class="footer-link" href="https://sassyroots.com">Explore the full shop →</a>
+    <div class="footer-divider"></div>
+    <p class="footer-legal">
+      No federal agency regulates herbalists. Products do not claim to heal, treat, or cure diseases. Information shared here is gathered from herbalists and traditional practitioners across many lineages. Taking care of yourself is the most revolutionary thing you can do.
+    </p>
+  </div>
+</footer>
+
+<script>
+  function openStripe() {
+    window.open(
+      'https://buy.stripe.com/9B68wP1Pl0Ja5RveHr04808',
+      'stripe-checkout',
+      'width=500,height=700,left=' + (screen.width/2 - 250) + ',top=' + (screen.height/2 - 350) + ',resizable=yes,scrollbars=yes'
+    );
+  }
+</script>
+
+</body>
+</html>
