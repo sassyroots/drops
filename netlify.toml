@@ -2,8 +2,3 @@
   from = "/magnesium-mercy"
   to = "/.netlify/functions/redirect/magnesium-mercy"
   status = 200
-
-[[redirects]]
-  from = "/.netlify/functions/redirect/*"
-  to = "/.netlify/functions/redirect/:splat"
-  status = 200
