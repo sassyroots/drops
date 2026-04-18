@@ -1,4 +1,9 @@
 [[redirects]]
   from = "/magnesium-mercy"
-  to = "https://www.sassyroots.com/product/magnesium-mercy/CU6SEZR3OU2DCBHGO5VQ2NFQ?cp=true&sa=false&sbp=false&q=true"
-  status = 301
+  to = "/.netlify/functions/redirect/magnesium-mercy"
+  status = 200
+
+[[redirects]]
+  from = "/.netlify/functions/redirect/*"
+  to = "/.netlify/functions/redirect/:splat"
+  status = 200
